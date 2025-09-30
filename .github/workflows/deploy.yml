@@ -1,5 +1,9 @@
 name: Deploy fanTABulous
 
+env:
+  ACTIONS_STEP_DEBUG: true
+  ACTIONS_RUNNER_DEBUG: true
+
 on:
   push:
     branches: [master]
@@ -15,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version "3.11"
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
