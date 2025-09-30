@@ -1,5 +1,10 @@
 # 🎼 fanTABulous
 
+![Python](https://img.shields.io/badge/python-3.11-blue)
+[![Tests](https://github.com/cruckman900/baselinepy.ro/actions/workflows/test.yml/badge.svg)](https://github.com/cruckman900/baselinepy.ro/actions)
+![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)
+[![Render](https://render.com/api/v1/badges/srv-d3dt963ipnbc73cle5m0?style=flat)](https://dashboard.render.com/web/srv-d3dt963ipnbc73cle5m0)
+
 *Where riffs are born, tabs are forged, and music meets code.*
 
 fanTABulous is a web-based tablature editor and archive built for guitarists, bassists, and solo wolves who want to write, save, and share their musical ideas. Whether you're sketching out a solo or composing a full-blown anthem, fanTABulous gives you the tools to make it sing.

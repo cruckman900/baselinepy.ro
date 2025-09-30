@@ -9,12 +9,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Deploy to Render
-      uses: JorgeLNJunior/render-deploy@v1.4.5
-      with:
-        service_id: ${{ secrets.RENDER_SERVICE_ID }}
-        api_key: ${{ secrets.RENDER_API_KEY }}
-        wait_deploy: true
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version "3.11
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.tst
+          pip install pytest pytest-cov
+
+      - name: Run tests with coverage
+        run: pytest --cov=app --cov-report=xml
+
+      - name: Deploy to Render
+        uses: JorgeLNJunior/render-deploy@v1.4.5
+        with:
+          service_id: ${{ secrets.RENDER_SERVICE_ID }}
+          api_key: ${{ secrets.RENDER_API_KEY }}
+          wait_deploy: true
