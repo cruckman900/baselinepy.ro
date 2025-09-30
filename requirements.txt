@@ -7,3 +7,4 @@ python-dotenv~=1.1.1
 pip~=25.2
 pytest~=8.4.2
 cloudinary~=1.44.1
+python-multipart
