@@ -21,7 +21,7 @@ jobs:
         run: curl --fail https://localhost:5000/health || exit 1
 
       - name: Deploy to Render
-        run: echo "Triggering Render deploy..." # Replace with actual deploy hook
+        run: https://api.render.com/deploy/srv-d3dt963ipnbc73cle5m0?key=icmwxkPCuWs
 
 services:
   - type: web
