@@ -16,8 +16,23 @@ fanTABulous is a web-based tablature editor and archive built for guitarists, ba
 - 🎨 Frontend (coming soon) with SVG fretboard rendering and Framer Motion flair
 
 ---
+🛠️ CI/CD with Render
+This repo includes a render.yaml for automated deploys. Just connect your GitHub repo to Render and let the pipeline shred.
+
+🤘 Contributing
+Pull requests are welcome. If you’ve got ideas for new features—like MIDI playback, tab sharing, or alternate tunings—open an issue and let’s riff.
+
+📜 License
+MIT. Because music should be free, and so should your code.
+
+✨ Credits
+Built with love, Python, and a whole lotta caffeine by Christopher Ruckman. Powered by poetic survival and a passion for expressive UI.
+
+Want to add badges, animated previews, or a poetic changelog stanza next? I’m ready to jam. Let’s make this README legendary.
 
 ## 📁 File Format: `.ftab`
+
+---
 
 Tabs are stored as structured JSON with timing, tuning, and note data:
 
@@ -37,3 +52,4 @@ Tabs are stored as structured JSON with timing, tuning, and note data:
     }
   ]
 }
+
