@@ -8,3 +8,4 @@ pip~=25.2
 pytest~=8.4.2
 cloudinary~=1.44.1
 python-multipart
+pydantic-settings~=2.11.0
