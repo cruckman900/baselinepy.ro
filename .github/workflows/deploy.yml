@@ -33,18 +33,18 @@ jobs:
           pip install -r requirements.txt
           pip install pytest pytest-cov
 
-      - name: Write secrets to .env
-        run: |
-          echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env
-          echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> .env
-          echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env
+#      - name: Write secrets to .env
+#        run: |
+#          echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env
+#          echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> .env
+#          echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env
 
-      - name: Debug env
-        run: cat .env && env | grep CLOUDINARY
+#      - name: Debug env
+#        run: cat .env && env | grep CLOUDINARY
 
-      - name: Source .env
-        run: source .env && pytest --cov-app --cov-report=xml
-        shell: bash
+#      - name: Source .env
+#        run: source .env && pytest --cov-app --cov-report=xml
+#        shell: bash
 
       - name: Run tests with coverage
         run: pytest --cov=app --cov-report=xml
