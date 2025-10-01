@@ -11,7 +11,7 @@ client = TestClient(app)
 @pytest.fixture
 def example_tab():
     os.makedirs("tabs", exist_ok=True)
-    path = "tabs/example.ftab"
+    path = "/tabs/example.ftab"
     with open(path, "wb") as f:
         f.write(b"X 1 2 0 3")
     yield path
@@ -20,7 +20,7 @@ def example_tab():
 def test_upload_valid_file():
     test_file_content = b"X 1 2 0 3"
     response = client.post(
-        "/upload/",
+        "/tabs/upload/",
         files={"file": ("test.ftab", test_file_content, "text/plain")}
     )
     assert response.status_code == 200
@@ -28,7 +28,7 @@ def test_upload_valid_file():
 
 def test_upload_empty_file():
     response = client.post(
-        "/upload/",
+        "/tabs/upload/",
         files={"file": ("empty.ftab", b"", "text/plain")}
     )
     assert response.status_code == 400
@@ -36,7 +36,7 @@ def test_upload_empty_file():
 
 def test_upload_wrong_extension():
     response = client.post(
-        "/upload/",
+        "/tabs/upload/",
         files={"file": ("not_a_tab.txt", b"X 1 2 0 3", "text/plain")}
     )
     assert response.status_code == 400
@@ -49,7 +49,7 @@ def test_download_existing_tab():
         f.write(b"X 21 2 0 3")
 
     # Test: download it
-    response = client.get("/download/test")
+    response = client.get("/tabs/download/test")
     assert response.status_code == 200
     assert response.headers["content-type"].startswith("text/plain")
     assert response.content == b"X 1 2 0 3"
@@ -58,14 +58,14 @@ def test_download_existing_tab():
     os.remove("tabs/example.ftab")
 
 def test_download_missing_tab():
-    response = client.get("/download/ghost")
+    response = client.get("/tabs/download/ghost")
     assert response.status_code == 404
-    assert "Tab file not found" in response.json()["detail"]
+    assert "Not Found" in response.json()["detail"]
 
 def test_upload_large_file():
     large_content = b"X 1 2 0 3\n" * 10000  # ~50KB
     response = client.post(
-        "/upload/",
+        "/tabs/upload/",
         files={"file": ("big.ftab", large_content, "text/plain")}
     )
     assert response.status_code == 200
