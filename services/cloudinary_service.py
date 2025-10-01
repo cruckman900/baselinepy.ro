@@ -4,8 +4,8 @@ import cloudinary.api
 import os
 from io import BytesIO
 
-# from dotenv import load_dotenv
-# load_dotenv(dotenv_path=".env")
+from dotenv import load_dotenv
+load_dotenv()
 
 import os
 cloudinary.config(

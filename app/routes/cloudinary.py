@@ -7,6 +7,9 @@ from cloudinary.exceptions import BadRequest
 
 # from app.utils.parser import detect_instrument, extract_tuning  # Assuming you’ve modularized these
 
+from dotenv import load_dotenv
+load_dotenv()
+
 router = APIRouter()
 
 ALLOWED_MIME_TYPES = {
