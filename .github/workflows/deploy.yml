@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'master - fanTABulous-backend'
+        description: 'fanTABulous-backend'
         required: true
         default: 'production'
   push:
@@ -17,7 +17,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: fanTABulous-backend
+    environment: master - fanTABulous-backend
 
     steps:
       - name: Checkout code
