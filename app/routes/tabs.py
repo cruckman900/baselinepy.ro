@@ -8,7 +8,7 @@ from app.schemas import TabCreate
 
 router = APIRouter()
 
-@router.post("/tabs/")
+@router.post("/tabs/upload/")
 def create_tab(tab: TabCreate):
     tab_id = crud.create_tab(tab)  # Assume this returns the new tab's ID
     return {
@@ -16,7 +16,7 @@ def create_tab(tab: TabCreate):
         "id": tab_id
     }
 
-@router.get("/download/{tab_id}")
+@router.get("/tabs/download/{tab_id}")
 async def download_tab(tab_id: str):
     file_path = os.path.join("tabs", f"{tab_id}.ftab")
     # Serve .ftab file for download
