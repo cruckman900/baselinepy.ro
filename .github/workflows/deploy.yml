@@ -17,7 +17,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: master - fanTABulous-backend
+    environment: fanTABulous-backend
 
     steps:
       - name: Checkout code
@@ -59,3 +59,4 @@ jobs:
           service_id: ${{ secrets.RENDER_SERVICE_ID }}
           api_key: ${{ secrets.RENDER_API_KEY }}
           wait_deploy: true
+
