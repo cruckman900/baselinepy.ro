@@ -10,3 +10,8 @@
 - ✅ Upload/download with expressive validation
 - ✅ CI/CD workflow running tests on push
 - ✅ Coverage reports showing real progress
+
+## [2025-09-30] 🎸 Cloudinary Riff Complete
+- Upload route streaming tabs to the cloud like sonic lightning
+- Download route now pulling riffs from the sky with precision
+- Tests passing like a flawless stage dive

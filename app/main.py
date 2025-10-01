@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import upload , core , tabs
+from app.routes import core, cloudinary
 from app import models, database
 import os
 from dotenv import load_dotenv
@@ -21,5 +21,4 @@ app.add_middleware(
 
 # Include routers
 app.include_router(core.router)
-app.include_router(tabs.router , prefix="/tabs")
-app.include_router(upload.router , prefix="/tabs/upload")
+app.include_router(cloudinary.router)

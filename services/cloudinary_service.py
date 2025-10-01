@@ -1,7 +1,11 @@
 import cloudinary
 import cloudinary.uploader
+import cloudinary.api
 import os
 from io import BytesIO
+
+from dotenv import load_dotenv
+load_dotenv()
 
 cloudinary.config(
     cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
@@ -9,6 +13,14 @@ cloudinary.config(
     api_secret=os.getenv("CLOUDINARY_API_SECRET"),
     secure=True
 )
+
+def get_cloudinary_url(public_id: str) -> str | None:
+    try:
+        result = cloudinary.api.resource(public_id, resource_type="raw")
+        return result.get("secure_url")
+    except cloudinary.exceptions.Error as e:
+        print(f"Cloudinary lookup failed for '{public_id}':", e)
+        return None
 
 def upload_tab_stream(file_stream: BytesIO, filename: str) -> str:
     result = cloudinary.uploader.upload(
