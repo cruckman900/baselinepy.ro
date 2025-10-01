@@ -45,6 +45,9 @@ jobs:
           CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
           CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
 
+      - name: Debug env
+        run: cat .env && env | grep.CLOUDINARY
+
       - name: Source .env
         run: source .env && pytest --cov-app --cov-report=xml
         shell: bash
