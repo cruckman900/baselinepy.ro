@@ -5,7 +5,7 @@ import os
 from io import BytesIO
 
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(dotenv_path=".env")
 
 cloudinary.config(
     cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),

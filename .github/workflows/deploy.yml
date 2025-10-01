@@ -45,6 +45,10 @@ jobs:
           CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
           CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
 
+      - name: Source .env
+        run: source .env && pytest --cov-app --cov-report=xml
+        shell: bash
+
       - name: Deploy to Render
         uses: JorgeLNJunior/render-deploy@v1.4.5
         with:
