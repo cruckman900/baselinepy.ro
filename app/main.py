@@ -21,5 +21,5 @@ app.add_middleware(
 
 # Include routers
 app.include_router(core.router)
-app.include_router(tabs.router , prefix="/tabs")
-app.include_router(upload.router , prefix="/upload")
+app.include_router(tabs.router , prefix="/tabs/")
+app.include_router(upload.router , prefix="/tabs/upload")

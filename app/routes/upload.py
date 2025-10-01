@@ -13,7 +13,7 @@ ALLOWED_MIME_TYPES = {
     "text/markdown"
 }
 
-@router.post("/upload")
+@router.post("/tabs/upload/")
 async def upload_tab(file: UploadFile):
     if file.content_type not in ALLOWED_MIME_TYPES:
         raise HTTPException(status_code=400, detail=f"Unsupported file type: {file.content_type}")
