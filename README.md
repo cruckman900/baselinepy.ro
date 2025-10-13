@@ -9,6 +9,38 @@
 
 fanTABulous is a web-based tablature editor and archive built for guitarists, bassists, and solo wolves who want to write, save, and share their musical ideas. Whether you're sketching out a solo or composing a full-blown anthem, fanTABulous gives you the tools to make it sing.
 
+# 🧠 fanTABulous Backend
+
+This is the backend engine of **fanTABulous**—a FastAPI-powered system for tab parsing, metadata extraction, and backend milestone logging.
+
+![License](https://badgen.net/badge/license/Proprietary/black?icon=shield)
+
+## ⚙️ Overview
+
+Handles:
+- Tab file uploads
+- Instrument and tuning detection
+- Metadata parsing
+- Backend milestone logging (poetic changelogs included)
+
+Built with FastAPI, SQLModel, modular route architecture, and expressive logging.
+
+## 🔐 License
+
+This software is **proprietary and confidential**. Unauthorized use, distribution, or modification is strictly prohibited.
+
+Access is granted only to licensed users under explicit agreement.  
+See [`LICENSE.txt`](./LICENSE.txt) for full terms, including:
+
+- Jurisdiction: Ohio, USA
+- Enforcement: Legal action for breach
+- Licensing tiers: Personal, Commercial, Enterprise
+- Audit rights, termination clause, and survivability
+
+## 🌐 Related Repos
+
+- [fanTABulous Frontend](https://github.com/cruckman900/nuxt.riffdaddy) — Nuxt-powered tab preview and UI magic
+
 ---
 
 ## 🚀 Features

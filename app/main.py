@@ -1,14 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+from app import database
 from app.routes import core, cloudinary, tab
-from app import models, database
+from app.db import init_db
+from app.database import Base
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 app = FastAPI()
+app.include_router(tab.router)
 
-models.Base.metadata.create_all(bind=database.engine)
+init_db()
+
+Base.metadata.create_all(bind=database.engine)
 
 origins = os.getenv("ALLOWED_ORIGINS", "").split(",")
 app.add_middleware(

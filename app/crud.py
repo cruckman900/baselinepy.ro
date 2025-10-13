@@ -1,4 +1,5 @@
-from app import models, database
+from app import database
+import models
 from app.schemas import TabCreate
 
 def create_tab(tab: TabCreate):
