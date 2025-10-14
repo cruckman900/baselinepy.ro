@@ -26,8 +26,8 @@ def download_tab(public_id: str):
 
 from fastapi import File
 
-@router.post("/upload")
-async def upload_tab(file: UploadFile = File(...)):
+@router.post("/upload-file")
+async def upload_tab_file(file: UploadFile = File(...)):
     if file.content_type not in ALLOWED_MIME_TYPES:
         raise HTTPException(status_code=400, detail="Unsupported file type")
 

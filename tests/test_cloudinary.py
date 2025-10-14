@@ -4,7 +4,7 @@
 def test_upload_valid_file(client):
     test_file_content = b"X 1 2 0 3"
     response = client.post(
-        "/upload/",
+        "/upload-file/",
         files={"file": ("test.ftab", test_file_content, "text/plain")}
     )
     assert response.status_code == 200
@@ -25,7 +25,7 @@ def test_download_existing_tab(client):
 def test_upload_unsupported_mime_types(client):
     test_file_content = b"<html><body>Not a tab</body></html>"
     response = client.post(
-        "/upload/",
+        "/upload-file/",
         files={"file": ("bad.html", test_file_content, "text/html")}
     )
     assert response.status_code == 400
@@ -33,7 +33,7 @@ def test_upload_unsupported_mime_types(client):
 
 def test_upload_empty_file(client):
     response = client.post(
-        "/upload/",
+        "/upload-file/",
         files={"file": ("empty.ftab", b"", "text/plain")}
     )
     assert response.status_code == 400
@@ -46,7 +46,7 @@ def test_upload_missing_file(client):
 def test_upload_large_file(client):
     large_content = b"X " * 10_000_000 # ~20MB
     response = client.post(
-        "/upload/",
+        "/upload-file/",
         files={"file": ("big.ftab", large_content, "text/plain")}
     )
     assert response.status_code in [413, 400] # Depending on server config

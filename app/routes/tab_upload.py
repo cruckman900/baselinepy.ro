@@ -24,8 +24,8 @@ async def get_tab_metadata(public_id: str):
         "metadata": extract_metadata(tab_text)
     }
 
-@router.post("/upload", tags=["Tabs"])
-async def upload_tab(data: TabUpload):
+@router.post("/upload-tab", tags=["Tabs"])
+async def upload_tab_json(data: TabUpload):
     print("Received tab:", data)
     return {"message", "Tab uploaded successfully"}
 
