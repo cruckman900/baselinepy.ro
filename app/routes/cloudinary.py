@@ -1,7 +1,6 @@
-from app.utils.tab_parser import detect_instrument , extract_tuning
-from services.cloudinary_service import upload_tab_stream
+from app.services.cloudinary_service import upload_tab_stream
 from fastapi import APIRouter, UploadFile, HTTPException
-from services.cloudinary_service import get_cloudinary_url
+from app.services.cloudinary_service import get_cloudinary_url
 from io import BytesIO
 from cloudinary.exceptions import BadRequest
 

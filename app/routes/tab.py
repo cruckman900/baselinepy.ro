@@ -1,10 +1,13 @@
-from fastapi import APIRouter, HTTPException
-from sqlmodel import Session
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
-from app.db import engine
-from models import Tab
-from app.utils.tab_parser import detect_instrument, extract_tuning, extract_metadata
-from app.routes.cloudinary import download_tab
+from app.database import engine
+from app.models.tab_model import Tab
+
+from sqlalchemy.orm import Session
+from app.schemas.tab_schema import TabCreate, TabRead, TabUpdate
+from app.services.tab_service import create_tab, get_or_404, update_tab, delete_tab
+from uuid import UUID
+from app.database import get_db
 
 router = APIRouter()
 
@@ -23,28 +26,24 @@ def check_db():
     except Exception as e:
         return {"status": "error", "detail": str(e)}
 
-@router.get("/metadata/{public_id}")
-async def get_tab_metadata(public_id: str):
-    try:
-        tab_text = download_tab(public_id)
-    except Exception:
+@router.post("/tabs", response_model=TabRead, tags=["Tabs"])
+def create_tab_route(tab: TabCreate, db: Session = Depends(get_db)):
+    return create_tab(db, tab)
+
+@router.get("/{tab_id}", response_model=TabRead, tags=["Tabs"])
+def read(tab_id: UUID, db: Session = Depends(get_db)):
+    tab = get_or_404(db, tab_id)
+    if not tab:
         raise HTTPException(status_code=404, detail="Tab not found")
+    return tab
 
-    return {
-        "instrument": detect_instrument(tab_text),
-        "tuning": extract_tuning(tab_text),
-        "metadata": extract_metadata(tab_text)
-    }
+@router.patch("/{tab_id}", response_model=TabRead, tags=["Tabs"])
+def update(tab_id: UUID, tab: TabUpdate, db: Session = Depends(get_db)):
+    return update_tab(db, tab_id, tab)
 
-@router.post("/tabs")
-def create_tab(tab: Tab):
-    with Session(engine) as session:
-        session.add(tab)
-        session.commit()
-        session.refresh(tab)
-        return tab
+@router.delete("/{tab_id}", tags=["Tabs"])
+def delete(tab_id: UUID, db: Session = Depends(get_db)):
+    delete_tab(db, tab_id)
+    return {"detail": "Tab deleted"}
 
-@router.post("/upload")
-async def upload_tab(data: TabUpload):
-    print("Received tab:", data)
-    return {"message", "Tab uploaded successfully"}
+__all__ = ["router"]
