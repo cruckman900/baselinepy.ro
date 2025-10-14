@@ -1,6 +1,7 @@
 name: Deploy fanTABulous
 
 env:
+  ENV: live
   ACTIONS_STEP_DEBUG: true
   ACTIONS_RUNNER_DEBUG: true
 

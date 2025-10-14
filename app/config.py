@@ -1,4 +1,7 @@
+import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+env_file = ".env.test" if os.getenv("ENV", "dev") == "dev" else ".env"
 
 class Settings(BaseSettings):
     ENV: str = "dev"
