@@ -4,8 +4,8 @@ router = APIRouter()
 
 @router.get("/")
 def root():
-    return {"message": "Welcome to fanTABulous!"}
+    return {"message": "Welcome to NEXTRiff"}
 
 @router.get("/health")
 def health_check():
-    return {"status": "fanTABulous is alive and riffing 🤘"}
+    return {"status": "ok"}
