@@ -1,7 +1,5 @@
 from fastapi.testclient import TestClient
 from app.main import app
-from sqlmodel import Session
-from app.db import engine
 
 client = TestClient(app)
 
