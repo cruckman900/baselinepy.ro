@@ -1,20 +1,18 @@
-import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
+import os
 
-env_file = ".env.test" if os.getenv("ENV", "dev") == "dev" else ".env"
+env_file = ".env" if os.getenv("ENV", "dev") == "dev" else ".env.live"
 
 class Settings(BaseSettings):
     ENV: str = "dev"
 
-    ALLOWED_ORIGINS: str
-    # RENDER_API_KEY: str
-    DATABASE_URL: str
-    # DEBUG_MODE: bool = False
+    ALLOWED_ORIGINS: str = "*"  # ✅ fallback for dev/test
+    DATABASE_URL: str = "sqlite:///./test.db"  # ✅ fallback for test runs
 
-    CLOUDINARY_CLOUD_NAME: str
-    CLOUDINARY_API_KEY: str
-    CLOUDINARY_API_SECRET: str
+    CLOUDINARY_CLOUD_NAME: str = "dummy"
+    CLOUDINARY_API_KEY: str = "dummy"
+    CLOUDINARY_API_SECRET: str = "dummy"
 
-    model_config = SettingsConfigDict(env_file=".env")
+    model_config = SettingsConfigDict(env_file=env_file)
 
 settings = Settings()
