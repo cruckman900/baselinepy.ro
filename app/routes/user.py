@@ -53,6 +53,23 @@ def verify_reset_token(token: str, db: Session) -> int:
         raise HTTPException(status_code=400, detail="Invalid or expired token")
     return record.user_id
 
+@router.post("/forgot-password")
+def forgot_password(payload: ForgotPasswordRequest, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == payload.email).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="Email not found")
+    token = generate_reset_token(user.id)   # UUID or JWT
+    send_reset_email(user.email, token)     # Email with reset link
+    return {"message", "Reset link sent"}
+
+@router.post("/reset-password/{token}")
+def reset_password(token: str, payload: ResetPasswordRequest, db: Session = Depends(get_db)):
+    user_id = verify_reset_token(token)
+    user = db.query(User).get(user_id)
+    user.hashed_password = hash_password(payload.new_password)
+    db.commit()
+    return {"message": "Password reset successful"}
+
 @router.post("/", response_model=UserRead)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     existing = db.query(User).filter_by(email=user.email).first()
@@ -108,20 +125,3 @@ def login_user(payload: UserLogin, db: Session = Depends(get_db)):
     if not user or not verify_password(payload.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     return {"message": "Login successful", "user_id": str(user.id)}
-
-@router.post("/forgot-password")
-def forgot_password(payload: ForgotPasswordRequest, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == payload.email).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="Email not found")
-    token = generate_reset_token(user.id)   # UUID or JWT
-    send_reset_email(user.email, token)     # Email with reset link
-    return {"message", "Reset link sent"}
-
-@router.post("/reset-password/{token}")
-def reset_password(token: str, payload: ResetPasswordRequest, db: Session = Depends(get_db)):
-    user_id = verify_reset_token(token)
-    user = db.query(User).get(user_id)
-    user.hashed_password = hash_password(payload.new_password)
-    db.commit()
-    return {"message": "Password reset successful"}
