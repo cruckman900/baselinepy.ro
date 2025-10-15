@@ -40,7 +40,7 @@ def test_upload_empty_file(client):
     assert "Empty file" in response.json()["detail"]
 
 def test_upload_missing_file(client):
-    response = client.post("/upload")
+    response = client.post("/upload-file")
     assert response.status_code == 422 # FAstAPI validation error
 
 def test_upload_large_file(client):
