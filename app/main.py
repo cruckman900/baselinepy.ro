@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from app.routes import cloudinary, user, tab
 from app.routes.tab import router as tab_router
-import os
 from dotenv import load_dotenv
 from app.startup import init_db
+
+from app.config import settings
 
 load_dotenv()
 app = FastAPI()
@@ -13,7 +13,7 @@ app.include_router(tab.router)
 
 init_db()
 
-origins = os.getenv("ALLOWED_ORIGINS", "").split(",")
+origins = settings.ALLOWED_ORIGINS.split(",")
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
