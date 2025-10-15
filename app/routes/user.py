@@ -28,8 +28,8 @@ def hash_password(password: str) -> str:
 def verify_password(plain: str, hashed: str) -> bool:
     return bcrypt.checkpw(plain.encode(), hashed.encode())
 
-def generate_reset_token(user_id: int) -> str:
-    return str(uuid.uuid4())
+def generate_reset_token(user_id: UUID) -> str:
+    return str(uuid4())
 
 def send_reset_email(to_email: str, token: str):
     env = Environment(loader=FileSystemLoader("templates"))
