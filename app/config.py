@@ -13,6 +13,11 @@ class Settings(BaseSettings):
     CLOUDINARY_API_KEY: str = "dummy"
     CLOUDINARY_API_SECRET: str = "dummy"
 
+    SMTP_HOST: str = "dummy"
+    SMTP_PORT: str = "dummy"
+    SMTP_USER: str = "dummy"
+    SMTP_PASS: str = "dummy"
+
     model_config = SettingsConfigDict(env_file=env_file)
 
 settings = Settings()
