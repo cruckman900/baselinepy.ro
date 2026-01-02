@@ -1,9 +1,13 @@
 # 🎼 fanTABulous
-
-![Python](https://img.shields.io/badge/python-3.11-blue)
-[![Tests](https://github.com/cruckman900/baselinepy.ro/actions/workflows/test.yml/badge.svg)](https://github.com/cruckman900/baselinepy.ro/actions)
-![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)
-[![Render](https://render.com/api/v1/badges/srv-d3dt963ipnbc73cle5m0?style=flat)](https://dashboard.render.com/web/srv-d3dt963ipnbc73cle5m0)
+![NEXTRiff](https://img.shields.io/badge/NEXTRiff-LinearDescent-blueviolet?style=for-the-badge&logo=vercel)
+![NEXTRiff](https://img.shields.io/badge/NEXTRiff-LinearDescent-blueviolet?style=for-the-badge&logo=vercel)
+![Python](https://img.shields.io/badge/Python-3776ab?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi)
+![Proprietary](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
+![Hits](https://hits.sh/github.com/cruckman900/baselinepy.ro.svg?style=for-the-badge)
+![Stars](https://img.shields.io/github/stars/cruckman900/baselinepy.ro?style=for-the-badge)
+![Issues](https://img.shields.io/github/issues/cruckman900/baselinepy.ro?style=for-the-badge)
+![Last Commit](https://img.shields.io/github/last-commit/cruckman900/baselinepy.ro?style=for-the-badge)
 
 *Where riffs are born, tabs are forged, and music meets code.*
 
