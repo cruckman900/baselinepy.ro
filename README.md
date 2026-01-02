@@ -1,10 +1,14 @@
 # 🎼 fanTABulous
 ![NEXTRiff](https://img.shields.io/badge/NEXTRiff-LinearDescent-blueviolet?style=for-the-badge&logo=vercel)
+
 ![Python](https://img.shields.io/badge/Python-3776ab?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi)
+
 ![Proprietary](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
+
 ![Hits](https://hits.sh/github.com/cruckman900/baselinepy.ro.svg?style=for-the-badge)
 ![Stars](https://img.shields.io/github/stars/cruckman900/baselinepy.ro?style=for-the-badge)
+
 ![Issues](https://img.shields.io/github/issues/cruckman900/baselinepy.ro?style=for-the-badge)
 ![Last Commit](https://img.shields.io/github/last-commit/cruckman900/baselinepy.ro?style=for-the-badge)
 
