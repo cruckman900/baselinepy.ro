@@ -1,6 +1,5 @@
 # 🎼 fanTABulous
 ![NEXTRiff](https://img.shields.io/badge/NEXTRiff-LinearDescent-blueviolet?style=for-the-badge&logo=vercel)
-![NEXTRiff](https://img.shields.io/badge/NEXTRiff-LinearDescent-blueviolet?style=for-the-badge&logo=vercel)
 ![Python](https://img.shields.io/badge/Python-3776ab?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi)
 ![Proprietary](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
