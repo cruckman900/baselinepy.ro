@@ -16,9 +16,9 @@
 
 fanTABulous is a web-based tablature editor and archive built for guitarists, bassists, and solo wolves who want to write, save, and share their musical ideas. Whether you're sketching out a solo or composing a full-blown anthem, fanTABulous gives you the tools to make it sing.
 
-# 🧠 fanTABulous Backend
+# 🧠 NEXTRiff Backend
 
-This is the backend engine of **fanTABulous**—a FastAPI-powered system for tab parsing, metadata extraction, and backend milestone logging.
+This is the backend engine of **NEXTRiff**—a FastAPI-powered system for tab parsing, metadata extraction, and backend milestone logging.
 
 ![License](https://badgen.net/badge/license/Proprietary/black?icon=shield)
 
