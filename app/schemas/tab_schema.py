@@ -11,6 +11,12 @@ class TabBase(BaseModel):
     artist: Optional[str] = None
     title: Optional[str] = None
     genre: Optional[str] = None
+    # Structured composition JSON (measures, instrument, tuning, tempo, etc.)
+    # serialized as a string — the frontend owns the shape of this blob.
+    content: Optional[str] = None
+    # Plain string owner reference (see Tab.user_id) so "my tabs" listing
+    # works today without a hard FK to a not-yet-real auth system.
+    user_id: Optional[str] = None
 
 class TabCreate(TabBase):
     pass
@@ -18,6 +24,8 @@ class TabCreate(TabBase):
 class TabRead(TabBase):
     id: UUID
     uploaded_at: datetime
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -28,5 +36,7 @@ class TabUpdate(BaseModel):
     artist: Optional[str] = None
     title: Optional[str] = None
     genre: Optional[str] = None
+    content: Optional[str] = None
+    user_id: Optional[str] = None
 
     model_config = ConfigDict(from_attributes=True)

@@ -8,6 +8,7 @@ venv/
 env/
 ENV/
 .venv/
+venv313/
 
 # IDE/editor configs
 .vscode/

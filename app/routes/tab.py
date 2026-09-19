@@ -5,8 +5,9 @@ from app.models.tab_model import Tab
 
 from sqlalchemy.orm import Session
 from app.schemas.tab_schema import TabCreate, TabRead, TabUpdate
-from app.services.tab_service import create_tab, get_or_404, update_tab, delete_tab
+from app.services.tab_service import create_tab, get_or_404, list_tabs, update_tab, delete_tab
 from uuid import UUID
+from typing import List, Optional
 from app.database import get_db
 
 router = APIRouter()
@@ -29,6 +30,13 @@ def check_db():
 @router.post("/tabs", response_model=TabRead, tags=["Tabs"])
 def create_tab_route(tab: TabCreate, db: Session = Depends(get_db)):
     return create_tab(db, tab)
+
+# Declared before the /{tab_id} catch-all below so a literal request to
+# "/tabs" is matched here rather than being parsed (and rejected) as a
+# tab_id UUID — FastAPI matches routes in the order they're registered.
+@router.get("/tabs", response_model=List[TabRead], tags=["Tabs"])
+def list_tabs_route(user_id: Optional[str] = None, db: Session = Depends(get_db)):
+    return list_tabs(db, user_id)
 
 @router.get("/{tab_id}", response_model=TabRead, tags=["Tabs"])
 def read(tab_id: UUID, db: Session = Depends(get_db)):

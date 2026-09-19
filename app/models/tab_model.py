@@ -16,6 +16,12 @@ class Tab(Base):
     tuning = Column(String)
     title = Column(String, nullable=False)
     content = Column(Text)  # This will store your tab file format
+    # Plain string owner reference — not a strict ForeignKey yet since there's
+    # no real auth/session system in place (login just returns a user_id).
+    # Lets tabs be scoped to "my tabs" today without hard-coupling to a FK
+    # that would break once real per-user auth replaces the current dev
+    # bypass.
+    user_id = Column(String, nullable=True)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
     uploaded_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
