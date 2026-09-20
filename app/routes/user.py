@@ -4,7 +4,8 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.user_model import User, PasswordResetToken
-from app.schemas.user_schema import UserCreate , UserRead , UserUpdate , UserLogin
+from app.schemas.user_schema import UserCreate , UserRead , UserUpdate , UserLogin, AuthResponse
+from app.auth import create_access_token, get_current_user
 from uuid import uuid4 , UUID
 from datetime import datetime, timezone
 import bcrypt
@@ -53,7 +54,7 @@ def verify_reset_token(token: str, db: Session) -> int:
         raise HTTPException(status_code=400, detail="Invalid or expired token")
     return record.user_id
 
-@router.post("/", response_model=UserRead)
+@router.post("/", response_model=AuthResponse)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     existing = db.query(User).filter_by(email=user.email).first()
     if existing:
@@ -68,7 +69,12 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
-    return db_user
+    token = create_access_token(db_user.id)
+    return AuthResponse(access_token=token, user=db_user)
+
+@router.get("/me", response_model=UserRead)
+def read_current_user(current_user: User = Depends(get_current_user)):
+    return current_user
 
 @router.get("/{user_id}", response_model=UserRead)
 def get_user(user_id: UUID, db: Session = Depends(get_db)):
@@ -102,12 +108,13 @@ def delete_user(user_id: UUID, db: Session = Depends(get_db)):
     db.delete(user)
     db.commit()
 
-@router.post("/login")
+@router.post("/login", response_model=AuthResponse)
 def login_user(payload: UserLogin, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email == payload.email).first()
     if not user or not verify_password(payload.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
-    return {"message": "Login successful", "user_id": str(user.id)}
+    token = create_access_token(user.id)
+    return AuthResponse(access_token=token, user=user)
 
 @router.post("/forgot-password")
 def forgot_password(payload: ForgotPasswordRequest, db: Session = Depends(get_db)):

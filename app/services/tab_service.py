@@ -18,10 +18,12 @@ def get_or_404(db: Session, tab_id: UUID) -> Tab:
         raise HTTPException(status_code=404, detail="Tab not found")
     return tab
 
-def list_tabs(db: Session, user_id: Optional[str] = None) -> List[Tab]:
+def list_tabs(db: Session, user_id: Optional[str] = None, include_archived: bool = False) -> List[Tab]:
     query = db.query(Tab)
     if user_id:
         query = query.filter(Tab.user_id == user_id) # type: ignore
+    if not include_archived:
+        query = query.filter(Tab.archived.is_(False)) # type: ignore
     return query.order_by(Tab.updated_at.desc()).all()
 
 def update_tab(db: Session, tab_id: UUID, tab_data: TabUpdate) -> Tab:

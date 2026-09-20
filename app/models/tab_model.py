@@ -1,6 +1,6 @@
 from app.database import Base
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Float, Boolean
 from sqlalchemy.orm import relationship
 from datetime import datetime, timezone
 from uuid import uuid4
@@ -26,3 +26,8 @@ class Tab(Base):
     updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
     uploaded_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     genre = Column(String)
+    # Soft-delete flag — an alternative to actually deleting the row (see
+    # DELETE /{tab_id} for the hard-delete path). Archived tabs are hidden
+    # from the default "my tabs" list but stay recoverable until the user
+    # explicitly deletes them for good.
+    archived = Column(Boolean, nullable=False, default=False, server_default="false")

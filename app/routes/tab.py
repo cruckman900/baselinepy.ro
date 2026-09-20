@@ -35,8 +35,8 @@ def create_tab_route(tab: TabCreate, db: Session = Depends(get_db)):
 # "/tabs" is matched here rather than being parsed (and rejected) as a
 # tab_id UUID — FastAPI matches routes in the order they're registered.
 @router.get("/tabs", response_model=List[TabRead], tags=["Tabs"])
-def list_tabs_route(user_id: Optional[str] = None, db: Session = Depends(get_db)):
-    return list_tabs(db, user_id)
+def list_tabs_route(user_id: Optional[str] = None, include_archived: bool = False, db: Session = Depends(get_db)):
+    return list_tabs(db, user_id, include_archived)
 
 @router.get("/{tab_id}", response_model=TabRead, tags=["Tabs"])
 def read(tab_id: UUID, db: Session = Depends(get_db)):

@@ -12,6 +12,7 @@ class UserCreate(UserBase):
 
 class UserRead(UserBase):
     id: UUID
+    email: EmailStr
     created_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
@@ -25,3 +26,12 @@ class UserUpdate(BaseModel):
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+
+class AuthResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: UserRead

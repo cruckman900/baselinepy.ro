@@ -16,7 +16,9 @@ def test_user_crud(client):
         "password": "shred123"
     })
     assert response.status_code == 200
-    user = response.json()
+    body = response.json()
+    assert "access_token" in body
+    user = body["user"]
     user_id = user["id"]
 
     # Read
@@ -54,4 +56,11 @@ def test_login_user(client):
         "password": "securepass"
     })
     assert response.status_code == 200
-    assert "user_id" in response.json()
+    body = response.json()
+    assert "access_token" in body
+    assert body["user"]["email"] == "login@example.com"
+
+    # /users/me with the returned token
+    me_response = client.get("/users/me", headers={"Authorization": f"Bearer {body['access_token']}"})
+    assert me_response.status_code == 200
+    assert me_response.json()["email"] == "login@example.com"

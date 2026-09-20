@@ -26,6 +26,7 @@ class TabRead(TabBase):
     uploaded_at: datetime
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
+    archived: bool = False
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -38,5 +39,6 @@ class TabUpdate(BaseModel):
     genre: Optional[str] = None
     content: Optional[str] = None
     user_id: Optional[str] = None
+    archived: Optional[bool] = None
 
     model_config = ConfigDict(from_attributes=True)
